@@ -23,6 +23,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+
+            <!-- 方法1 -->
+            <!-- 排除springboot中的内置tomcat -->
+            <!--<exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -30,9 +39,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- 方法2 -->
+        <!--当打war包到tomcat时，自动排除内置的tomcat，避免二者产生冲突-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!--打包的时候可以不用包进去，别的设施会提供。事实上该依赖理论上可以参与编译，测试，运行等周期。
+                相当于compile，但是打包阶段做了exclude操作-->
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <!-- 打包名字 -->
+        <finalName>hello-jenkins</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
