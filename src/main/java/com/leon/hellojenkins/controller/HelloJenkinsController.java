@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloJenkinsController {
     @RequestMapping(value = "/hello")
     public String hello() {
+        System.out.println("com.leon.hellojenkins.controller.HelloJenkinsController.hello() called...");
         return "hello jenkins";
     }
 }
